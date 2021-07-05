@@ -1,0 +1,136 @@
+
+<div class="container-fluid mb-5" id="table">
+    <h1>Internship Enrollment Form</h1>
+    <form #userForm="ngForm"(ngSubmit)="onSubmit()" ID=table  novalidate>
+
+        {{ userForm.value | json  }}
+        <hr />
+        {{userModel | json}}
+    <button (click)="exportexcel()" >Export to excel</button>
+
+        <div class="form-group" ID="f">
+            <label>First Name</label>
+            <input value='default' type="text" required #firstname="ngModel"
+             [class.is-invalid]="firstname.invalid && firstname.touched" class="form-control "
+              name="firstname" [(ngModel)]="userModel.firstname">
+              <small class="text-danger" [class.d-none]="firstname.valid ||firstname.untouched">FirstName is required</small>
+        </div>
+
+        <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" class="form-control" name="lastname" [(ngModel)]="userModel.lastname">
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" class="form-control" name="email" [(ngModel)]="userModel.email">
+        </div>
+
+        <div class="form-group">
+            <label>Phone Number</label>
+            <input type="string" #phone class="form-control" name="phone" [(ngModel)]="userModel.phone">
+        </div>
+        {{phone.className}}
+
+    
+        <div class="form-group">
+            <br>
+            <label><h6>JavaScript FrameWork You Prefer : </h6> </label>
+            <br>
+            <select   required #topic="ngModel" [class.is-invalid]="topic.invalid && topic.touched" class="custom-select" name="topic" [(ngModel)]="userModel.topic">
+                <option value="default">I am intrested in</option>
+                <option *ngFor="let topic of topics">{{ topic }}</option>
+            </select>
+            <small class="text-danger" [class.d-none]="topic.valid || topic.untouched">Please choose a framework</small>
+            <br>
+        </div>
+<br>
+        <div class="mb-3">
+            <label > Time Preferences</label>
+            <div class="form-check">
+                <input class="form-check-input"  [(ngModel)]="userModel.timePreference" type="radio" name="timePreference" value="morning">
+                <label class="form-check-label">Morning (9AM - 6PM)</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" [(ngModel)]="userModel.timePreference" type="radio" name="timePreference" value="evening">
+                <label class="form-check-label">Evening (6PM - 3AM)</label>
+            </div>
+        </div>
+
+
+        <!-- <div bgModelGroup="address">
+            <div class="form-group">
+                <label>Street</label>
+                <input type="text" class="form-control" name="street" ngModel>
+            </div>
+            <div class="form-group">
+                <label>City</label>
+                <input type="text" class="form-control" name="city" ngModel>
+            </div>
+            <div class="form-group">
+                <label>State</label>
+                <input type="text" class="form-control" name="state" ngModel>
+            </div>
+            <div class="form-group">
+                <label>Postal Code</label>
+                <input type="text" class="form-control" name="postalcode" ngModel>
+            </div>
+        </div> -->
+
+
+        <div class="formcheck mb-3">
+            <input class="form-check-input" name="subscribe" [(ngModel)]="userModel.subscribe" type="checkbox">
+            <label class="form-check-label">
+                Send Promotional offers
+            </label>
+        </div>
+        <div class="formcheck mb-3">
+            <input class="form-check-input" name="accept" [(ngModel)]="userModel.accept" type="checkbox">
+            <label class="form-check-label">
+                Accept terms and conditions
+            </label>
+        </div>
+
+        <button [disabled]="userForm.form.invalid" class="btn btn-primary" type="submit">Submit form</button>
+
+       
+  
+        <qr-code [value]="dataString"></qr-code>
+
+       
+        <div class="container" >
+            <h1>Data in Tabel</h1>
+            <table class="table table-striped" ID="table">
+                <thead>
+                    <tr>
+                        
+                        <th>{{userForm.value | json }}</th>
+                    </tr>
+                </thead>
+              <tbody>
+                <tr *ngFor="contact form">
+                  <td>  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+
+
+    </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
